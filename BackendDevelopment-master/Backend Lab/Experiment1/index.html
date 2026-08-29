@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skincare Hub - Your Guide to Radiant Skin</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fcf9f9;
+            padding: 20px;
+        }
+
+        /* Layout styles */
+        header {
+            background: linear-gradient(135deg, #f5a6b7, #ffc4d4);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section {
+            background: white;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        section h2 {
+            color: #d16b84;
+            border-bottom: 3px solid #ffc4d4;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        section h3 {
+            color: #a85268;
+            margin: 1.5rem 0 0.5rem 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem;
+            color: #666;
+            margin-top: 2rem;
+        }
+
+        /* Form styles */
+        form {
+            max-width: 700px;
+        }
+
+        fieldset {
+            border: 1px solid #ffc4d4;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 6px;
+        }
+
+        legend {
+            font-weight: bold;
+            padding: 0 0.5rem;
+            color: #d16b84;
+        }
+
+        form div {
+            margin-bottom: 1rem;
+        }
+
+        label {
+            display: inline-block;
+            width: 150px;
+            font-weight: 500;
+        }
+
+        /* Interactive Input Validation Styles */
+        input:not([type="radio"]):not([type="checkbox"]):not([type="color"]):not([type="range"]),
+        select,
+        textarea {
+            padding: 0.5rem;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            width: 100%;
+            max-width: 300px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        input[type="radio"],
+        input[type="checkbox"] {
+            width: auto;
+        }
+
+        button {
+            background: #f5a6b7;
+            color: white;
+            border: none;
+            padding: 0.7rem 2rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background: #d16b84;
+        }
+
+        button[type="reset"] {
+            background: #e0e0e0;
+            color: #333;
+            margin-left: 0.5rem;
+        }
+
+        button[type="reset"]:hover {
+            background: #cccccc;
+        }
+
+        /* Table styles */
+        table {
+            width: 100%;
+            max-width: 800px;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        th, td {
+            border: 1px solid #ffc4d4;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background: #f5a6b7;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background: #fff5f7;
+        }
+
+        tr:hover {
+            background: #ffe3e9;
+        }
+
+        caption {
+            caption-side: bottom;
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+        }
+
+        /* List styles */
+        ul, ol {
+            padding-left: 2rem;
+            margin: 0.5rem 0;
+        }
+
+        ul ul, ol ul {
+            padding-left: 1.5rem;
+        }
+
+        /* Multimedia styles */
+        video, audio {
+            max-width: 100%;
+            margin: 0.5rem 0;
+        }
+
+        figure {
+            margin: 1rem 0;
+            text-align: center;
+        }
+
+        figcaption {
+            font-style: italic;
+            color: #666;
+            margin-top: 0.5rem;
+        }
+
+        picture img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        /* Interactive elements */
+        details {
+            background: #fff5f7;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            border: 1px solid #ffe3e9;
+        }
+
+        details summary {
+            font-weight: bold;
+            cursor: pointer;
+            color: #d16b84;
+        }
+
+        details ul, details ol {
+            margin-top: 0.5rem;
+        }
+
+        dialog {
+            padding: 2rem;
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            max-width: 400px;
+            margin: auto;
+            background: #fff5f7;
+        }
+
+        dialog::backdrop {
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .radio-group, .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem 1.5rem;
+        }
+
+        .radio-group div, .checkbox-group div {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .radio-group label, .checkbox-group label {
+            width: auto;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            header {
+                padding: 1rem;
+            }
+
+            section {
+                padding: 1rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            label {
+                width: 100%;
+                display: block;
+                margin-bottom: 0.2rem;
+            }
+
+            input:not([type="radio"]):not([type="checkbox"]):not([type="color"]):not([type="range"]),
+            select,
+            textarea {
+                max-width: 100%;
+            }
+
+            table {
+                font-size: 0.9rem;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            table, thead, tbody, th, td, tr {
+                display: block;
+            }
+
+            thead {
+                display: none;
+            }
+
+            tr {
+                margin-bottom: 1rem;
+                border: 1px solid #ffc4d4;
+                border-radius: 4px;
+                padding: 0.5rem;
+            }
+
+            td {
+                border: none;
+                padding: 0.3rem 0;
+                display: flex;
+                justify-content: space-between;
+            }
+
+            td::before {
+                content: attr(data-label);
+                font-weight: bold;
+                margin-right: 1rem;
+                color: #d16b84;
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Skincare Hub</h1>
+    <p>Your Ultimate Guide to Healthy, Radiant Skin</p>
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#routines">Routines</a></li>
+            <li><a href="#comparison">Ingredients</a></li>
+            <li><a href="#profile">Skin Profile</a></li>
+            <li><a href="#multimedia">Media</a></li>
+            <li><a href="#interactive">Interactive</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <!-- Home Section -->
+    <section id="home">
+        <h2>Welcome to the Skincare Hub</h2>
+        <p>This portal is dedicated to helping you understand your skin, find the right active ingredients, and build a routine that actually works.</p>
+        <p><strong>Note:</strong> Everyone's skin is unique. What works for someone else might not work for you, so always pay attention to your skin's barrier.</p>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2>About Skincare</h2>
+        <p>Skincare is a personal journey that involves maintaining skin integrity, enhancing its appearance, and relieving skin conditions through the careful application of cosmetic products.</p>
+
+        <h3>Key Concepts</h3>
+        <p><strong>Skin Barrier:</strong> The outermost layer of your skin that protects against environmental damage.</p>
+        <p><em>Hydration vs. Moisture:</em> Hydration adds water to the skin, while moisture locks it in.</p>
+        <p><mark>Patch Testing:</mark> A crucial method for checking how your skin reacts to new products.</p>
+        <p><del>Physical scrubs</del> are largely being replaced by <ins>chemical exfoliants</ins> in modern routines.</p>
+        <p>Example Rule: <code>Thinnest to thickest consistency</code></p>
+        <p>Shortcut: <kbd>SPF 30+</kbd> is your best defense against aging.</p>
+        <p>Term: <abbr title="Transepidermal Water Loss">TEWL</abbr> occurs when your skin barrier is compromised.</p>
+        <p>Contact a dermatologist: <address>dr.smith@dermatology-clinic.com</address></p>
+    </section>
+
+    <!-- Routines Section -->
+    <section id="routines">
+        <h2>Building Your Routine</h2>
+        <ul>
+            <li>Skin Types
+                <ul>
+                    <li>Oily</li>
+                    <li>Dry</li>
+                    <li>Combination</li>
+                    <li>Sensitive</li>
+                </ul>
+            </li>
+            <li>Essential Steps
+                <ul>
+                    <li>Cleanser</li>
+                    <li>Moisturizer</li>
+                    <li>Sunscreen (AM only)</li>
+                </ul>
+            </li>
+            <li>Targeted Treatments
+                <ul>
+                    <li>Serums</li>
+                    <li>Exfoliants</li>
+                    <li>Retinoids</li>
+                    <li>Spot Treatments</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3>The Basic AM Path</h3>
+        <ol>
+            <li>Cleanse (or just splash with water)</li>
+            <li>Apply Vitamin C Serum (optional)</li>
+            <li>Moisturize</li>
+            <li>Apply Sunscreen (SPF 30+)</li>
+        </ol>
+
+        <h3>Star Ingredients and Their Uses</h3>
+        <dl>
+            <dt>Hyaluronic Acid</dt>
+            <dd>A humectant that draws water into the skin, plumping fine lines.</dd>
+            <dt>Niacinamide (Vitamin B3)</dt>
+            <dd>Soothes redness, regulates oil production, and brightens tone.</dd>
+            <dt>Salicylic Acid (BHA)</dt>
+            <dd>An oil-soluble acid that clears out pores and fights acne.</dd>
+        </dl>
+    </section>
+
+    <!-- Comparison Section -->
+    <section id="comparison">
+        <h2>Ingredient Comparison</h2>
+        <table>
+            <caption>Table 1: Comparison of Popular Active Ingredients</caption>
+            <thead>
+            <tr>
+                <th>Ingredient</th>
+                <th>Type</th>
+                <th>Irritation Potential</th>
+                <th>Primary Benefit</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td data-label="Ingredient">Glycolic Acid (AHA)</td>
+                <td data-label="Type">Water-soluble Exfoliant</td>
+                <td data-label="Irritation Potential">Moderate</td>
+                <td data-label="Use Case">Surface texture, hyperpigmentation</td>
+            </tr>
+            <tr>
+                <td data-label="Ingredient">Salicylic Acid (BHA)</td>
+                <td data-label="Type">Oil-soluble Exfoliant</td>
+                <td data-label="Irritation Potential">Low to Moderate</td>
+                <td data-label="Use Case">Acne, blackheads, clogged pores</td>
+            </tr>
+            <tr>
+                <td data-label="Ingredient">Retinol</td>
+                <td data-label="Type">Vitamin A Derivative</td>
+                <td data-label="Irritation Potential">High (initially)</td>
+                <td data-label="Use Case">Anti-aging, fine lines, cell turnover</td>
+            </tr>
+            <tr>
+                <td data-label="Ingredient">Ceramides</td>
+                <td data-label="Type">Lipids / Fats</td>
+                <td data-label="Irritation Potential">Very Low</td>
+                <td data-label="Use Case">Barrier repair, moisture retention</td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="4">Table 1: Skincare Ingredients Breakdown</td>
+            </tr>
+            </tfoot>
+        </table>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="profile">
+        <h2>Create Your Skin Profile</h2>
+        <p>Tell us about your skin to receive customized routine recommendations. Invalid fields will turn <strong style="color: red;">red</strong>, and valid fields will turn <strong style="color: green;">green</strong>.</p>
+        <form id="contactForm">
+            <fieldset>
+                <legend>Personal Information</legend>
+
+                <div>
+                    <label for="fullname">Full Name:</label>
+                    <input type="text" id="fullname" name="fullname" placeholder="Enter your full name" required minlength="2">
+                </div>
+
+                <div>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                </div>
+
+                <div>
+                    <label for="phone">Phone:</label>
+                    <input type="tel" id="phone" name="phone" placeholder="+91-XXXXXXXXXX" pattern="[\+]\d{2}-\d{10}">
+                </div>
+
+                <div>
+                    <label for="age">Age:</label>
+                    <input type="number" id="age" name="age" min="13" max="100" required>
+                </div>
+
+                <div>
+                    <label for="dob">Date of Birth:</label>
+                    <input type="date" id="dob" name="dob" required>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Skin Details</legend>
+
+                <div>
+                    <label for="skintype">Skin Type:</label>
+                    <select id="skintype" name="skintype" required>
+                        <option value="">--Select your skin type--</option>
+                        <optgroup label="Common Types">
+                            <option value="oily">Oily</option>
+                            <option value="dry">Dry</option>
+                            <option value="combination">Combination</option>
+                            <option value="normal">Normal</option>
+                        </optgroup>
+                    </select>
+                </div>
+
+                <div>
+                    <label>Skin Sensitivity:</label>
+                    <div class="radio-group">
+                        <div>
+                            <input type="radio" id="sens_low" name="sensitivity" value="low" required>
+                            <label for="sens_low">Low (Rarely reacts)</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="sens_med" name="sensitivity" value="medium">
+                            <label for="sens_med">Medium</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="sens_high" name="sensitivity" value="high">
+                            <label for="sens_high">High (Easily reddens)</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <label>Primary Concerns:</label>
+                    <div class="checkbox-group">
+                        <div>
+                            <input type="checkbox" id="acne" name="concerns" value="acne">
+                            <label for="acne">Acne & Breakouts</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="aging" name="concerns" value="aging">
+                            <label for="aging">Fine Lines & Aging</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="pigment" name="concerns" value="pigmentation">
+                            <label for="pigment">Hyperpigmentation</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="dryness" name="concerns" value="dryness">
+                            <label for="dryness">Severe Dryness / Flaking</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <label for="water">Glasses of water/day:</label>
+                    <input type="range" id="water" name="water" min="0" max="15" value="5">
+                    <output id="waterOutput">5</output>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Additional Information</legend>
+
+                <div>
+                    <label for="message">Current Routine:</label>
+                    <textarea id="message" name="message" rows="5" cols="30" placeholder="List the products you currently use..." required minlength="10"></textarea>
+                </div>
+
+                <div>
+                    <label for="color">Favorite Brand Color:</label>
+                    <input type="color" id="color" name="color" value="#ffc4d4">
+                </div>
+
+                <div>
+                    <label for="file">Upload Selfie (Optional):</label>
+                    <input type="file" id="file" name="file" accept="image/png, image/jpeg">
+                </div>
+            </fieldset>
+
+            <div>
+                <button type="submit">Submit Profile</button>
+                <button type="reset">Clear Form</button>
+            </div>
+        </form>
+    </section>
+
+    <!-- Multimedia Section -->
+    <section id="multimedia">
+        <h2>Multimedia Content</h2>
+
+        <article>
+            <h3>Visual Guides</h3>
+            <picture>
+                <source media="(min-width: 800px)" srcset="https://via.placeholder.com/800x400/f5a6b7/white?text=Morning+Routine">
+                <source media="(min-width: 400px)" srcset="https://via.placeholder.com/400x200/f5a6b7/white?text=Morning">
+                <img src="https://via.placeholder.com/200x100/f5a6b7/white?text=Morning" alt="Morning Routine Steps Illustration">
+            </picture>
+
+            <figure>
+                <img src="https://via.placeholder.com/300x200/ffc4d4/white?text=Sunscreen+Application" alt="Sunscreen Application Graphic" style="max-width:100%; height:auto; border-radius:8px;">
+                <figcaption>Figure 1: Two-finger rule for adequate sunscreen application.</figcaption>
+            </figure>
+        </article>
+
+        <article>
+            <h3>Audio: Skincare Podcast Excerpt</h3>
+            <audio controls>
+                <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+                <source src="https://www.soundhelix.com/examples/ogg/SoundHelix-Song-1.ogg" type="audio/ogg">
+                Your browser does not support the audio element.
+            </audio>
+        </article>
+
+        <article>
+            <h3>Video: Cleansing Technique</h3>
+            <video controls width="560" height="315">
+                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                <source src="https://www.w3schools.com/html/mov_bbb.ogg" type="video/ogg">
+                Your browser does not support the video tag.
+            </video>
+        </article>
+
+        <article>
+            <h3>Treatment Indicators</h3>
+            <p>Retinization Phase (Skin adapting to Retinol):
+                <progress value="30" max="100">30%</progress>
+            </p>
+            <p>Moisture Barrier Health:
+                <meter value="8.5" min="0" max="10" low="3" high="7" optimum="9">85%</meter>
+            </p>
+        </article>
+    </section>
+
+    <!-- Interactive Section -->
+    <section id="interactive">
+        <h2>Interactive Elements</h2>
+
+        <details>
+            <summary>Rules for Combining Active Ingredients</summary>
+            <ul>
+                <li><strong>Don't mix:</strong> Retinol and AHA/BHA (at the same time)</li>
+                <li><strong>Don't mix:</strong> Vitamin C and Benzoyl Peroxide</li>
+                <li><strong>Do mix:</strong> Retinol and Ceramides/Hyaluronic Acid</li>
+                <li><strong>Do mix:</strong> Vitamin C and Sunscreen</li>
+            </ul>
+        </details>
+
+        <details>
+            <summary>How to Patch Test</summary>
+            <ol>
+                <li>Apply a small amount of product to a clear patch of skin (like the inner arm).</li>
+                <li>Wait 24 hours.</li>
+                <li>Check for redness, itching, or swelling.</li>
+                <li>If no reaction occurs, apply to the face carefully.</li>
+            </ol>
+        </details>
+
+        <div>
+            <h3>Search Skincare Ingredients</h3>
+            <form>
+                <label for="techSearch">Search Active Ingredients:</label>
+                <input list="ingredients" id="techSearch" name="techSearch" placeholder="Type to search..." style="max-width:300px;">
+                <datalist id="ingredients">
+                    <option value="Hyaluronic Acid">
+                    <option value="Niacinamide">
+                    <option value="Salicylic Acid (BHA)">
+                    <option value="Glycolic Acid (AHA)">
+                    <option value="Lactic Acid">
+                    <option value="Retinol">
+                    <option value="Tretinoin">
+                    <option value="Vitamin C">
+                    <option value="Ceramides">
+                    <option value="Peptides">
+                    <option value="Benzoyl Peroxide">
+                    <option value="Squalane">
+                </datalist>
+                <button type="button" style="margin-top: 10px;">Search</button>
+            </form>
+        </div>
+
+        <div style="margin-top: 2rem;">
+            <button id="openDialog">Read Before Using Exfoliants</button>
+            <dialog id="myDialog">
+                <p><strong>⚠️ Sun Sensitivity Warning</strong></p>
+                <p>Using chemical exfoliants (AHAs/BHAs) or retinoids increases your skin's sensitivity to the sun.</p>
+                <p>You <strong>must</strong> apply a broad-spectrum sunscreen (SPF 30 or higher) every morning while using these products to prevent severe damage and hyperpigmentation.</p>
+                <button id="closeDialog" style="margin-top: 1rem;">I Understand</button>
+            </dialog>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2026 Skincare Hub - Glow Up Project</p>
+    <p>Healthy Skin Journey | Version 1.0</p>
+</footer>
+
+<script>
+    // Update water intake output on range slider
+    const waterInput = document.getElementById('water');
+    const waterOutput = document.getElementById('waterOutput');
+    if (waterInput && waterOutput) {
+        waterInput.addEventListener('input', function() {
+            waterOutput.textContent = this.value;
+        });
+    }
+
+    // Live visual validation logic (Red for Invalid, Green for Valid)
+    const textInputs = document.querySelectorAll('input:not([type="radio"]):not([type="checkbox"]):not([type="color"]):not([type="range"]):not([type="file"]), select, textarea');
+
+    textInputs.forEach(input => {
+        // Apply colors on blur or input changes
+        const validateInput = () => {
+            if(input.value === "" && !input.hasAttribute('required')) {
+                // Optional empty fields stay neutral
+                input.style.borderColor = '#ddd';
+                input.style.backgroundColor = 'white';
+                return;
+            }
+
+            if (input.checkValidity()) {
+                input.style.borderColor = '#28a745'; // Green
+                input.style.backgroundColor = '#e8f5e9';
+            } else {
+                input.style.borderColor = '#dc3545'; // Red
+                input.style.backgroundColor = '#ffebee';
+            }
+        };
+
+        input.addEventListener('input', validateInput);
+        input.addEventListener('blur', validateInput);
+    });
+
+    // Form submission handler
+    const form = document.getElementById('contactForm');
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('✨ Profile submitted successfully!\nTime to glow up! (Demo form)');
+            return false;
+        });
+
+        // Reset colors when form is cleared
+        form.addEventListener('reset', function() {
+            setTimeout(() => {
+                textInputs.forEach(input => {
+                    input.style.borderColor = '#ddd';
+                    input.style.backgroundColor = 'white';
+                });
+            }, 10);
+        });
+    }
+
+    // Dialog handling
+    const dialog = document.getElementById('myDialog');
+    const openBtn = document.getElementById('openDialog');
+    const closeBtn = document.getElementById('closeDialog');
+
+    if (dialog && openBtn && closeBtn) {
+        openBtn.addEventListener('click', () => {
+            dialog.showModal();
+        });
+        closeBtn.addEventListener('click', () => {
+            dialog.close();
+        });
+
+        // Close dialog on backdrop click
+        dialog.addEventListener('click', (e) => {
+            const rect = dialog.getBoundingClientRect();
+            const isInDialog = (rect.top <= e.clientY && e.clientY <= rect.top + rect.height &&
+                rect.left <= e.clientX && e.clientX <= rect.left + rect.width);
+            if (!isInDialog) {
+                dialog.close();
+            }
+        });
+    }
+
+    console.log('🌸 Skincare Hub Initialized');
+    console.log('✨ Live validation loaded: Valid inputs turn green, invalid inputs turn red.');
+</script>
+</body>
+</html>

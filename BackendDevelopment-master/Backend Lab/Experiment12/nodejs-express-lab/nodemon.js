@@ -1,0 +1,6 @@
+{
+  "watch": ["*.js", "views"],
+  "ext": "js,json,ejs",
+  "ignore": ["node_modules"],
+  "delay": "2500"
+}
