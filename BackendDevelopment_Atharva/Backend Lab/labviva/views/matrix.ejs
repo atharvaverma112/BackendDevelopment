@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Eisenhower Matrix</title>
+</head>
+
+<body>
+
+    <h1>Eisenhower Matrix</h1>
+
+    <h2>🔴 Do First</h2>
+
+    <% tasks.forEach(task => { %>
+
+        <% if (task.priority === "urgent" &&
+               task.importance === "important") { %>
+
+            <p>
+                <%= task.title %>
+                - Completed: <%= task.completed %>
+            </p>
+
+        <% } %>
+
+    <% }) %>
+
+    <hr>
+
+    <h2>🟠 Schedule</h2>
+
+    <% tasks.forEach(task => { %>
+
+        <% if (task.priority === "normal" &&
+               task.importance === "important") { %>
+
+            <p>
+                <%= task.title %>
+                - Completed: <%= task.completed %>
+            </p>
+
+        <% } %>
+
+    <% }) %>
+
+    <hr>
+
+    <h2>🔵 Delegate</h2>
+
+    <% tasks.forEach(task => { %>
+
+        <% if (task.priority === "urgent" &&
+               task.importance === "not-important") { %>
+
+            <p>
+                <%= task.title %>
+                - Completed: <%= task.completed %>
+            </p>
+
+        <% } %>
+
+    <% }) %>
+
+    <hr>
+
+    <h2>⚪ Eliminate</h2>
+
+    <% tasks.forEach(task => { %>
+
+        <% if (task.priority === "normal" &&
+               task.importance === "not-important") { %>
+
+            <p>
+                <%= task.title %>
+                - Completed: <%= task.completed %>
+            </p>
+
+        <% } %>
+
+    <% }) %>
+
+</body>
+
+</html>

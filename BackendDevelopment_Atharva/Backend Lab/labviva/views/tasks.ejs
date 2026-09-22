@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>All Tasks</title>
+</head>
+
+<body>
+
+    <h1>All My Tasks</h1>
+
+    <% tasks.forEach(task => { %>
+
+        <div>
+
+            <h3><%= task.title %></h3>
+
+            <p>Urgency: <%= task.priority %></p>
+
+            <p>Importance: <%= task.importance %></p>
+
+            <p>Completed: <%= task.completed %></p>
+
+            <!-- Mark as Complete -->
+
+            <% if (!task.completed) { %>
+
+                <form action="/tasks/complete/<%= task._id %>" method="POST">
+
+                    <button type="submit">
+                        Mark as Completed
+                    </button>
+
+                </form>
+
+            <% } else { %>
+
+                <p>Task Completed ✅</p>
+
+            <% } %>
+
+            <!-- Edit Task -->
+
+            <form action="/tasks/edit/<%= task._id %>" method="GET">
+
+                <button type="submit">
+                    Edit Task ✏️
+                </button>
+
+            </form>
+
+            <!-- Delete Task -->
+
+            <form action="/tasks/delete/<%= task._id %>" method="POST">
+
+                <button type="submit">
+                    Delete Task 🗑️
+                </button>
+
+            </form>
+
+        </div>
+
+        <hr>
+
+    <% }) %>
+
+</body>
+
+</html>

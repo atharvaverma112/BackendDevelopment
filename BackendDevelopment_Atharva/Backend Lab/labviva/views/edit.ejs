@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Edit Task</title>
+</head>
+
+<body>
+
+    <h1>Edit Task</h1>
+
+    <form action="/tasks/edit/<%= task._id %>" method="POST">
+
+        <label>Task Title:</label>
+
+        <input
+            type="text"
+            name="title"
+            value="<%= task.title %>"
+            required
+        >
+
+        <br><br>
+
+        <label>Urgency:</label>
+
+        <select name="priority" required>
+
+            <option value="urgent"
+                <%= task.priority === "urgent" ? "selected" : "" %>>
+                Urgent
+            </option>
+
+            <option value="normal"
+                <%= task.priority === "normal" ? "selected" : "" %>>
+                Not Urgent
+            </option>
+
+        </select>
+
+        <br><br>
+
+        <label>Importance:</label>
+
+        <select name="importance" required>
+
+            <option value="important"
+                <%= task.importance === "important" ? "selected" : "" %>>
+                Important
+            </option>
+
+            <option value="not-important"
+                <%= task.importance === "not-important" ? "selected" : "" %>>
+                Not Important
+            </option>
+
+        </select>
+
+        <br><br>
+
+        <button type="submit">Update Task</button>
+
+    </form>
+
+</body>
+
+</html>

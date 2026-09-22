@@ -1,5 +1,5 @@
 const express = require("express");
-const { MongoClient } = require("mongodb");
+const { MongoClient, ObjectId } = require("mongodb");
 
 const app = express();
 
@@ -17,6 +17,8 @@ app.use(express.static("public"));
 
 app.use(express.urlencoded({ extended: true }));
 
+app.use(express.json());
+
 // Connect to MongoDB
 async function connectDB() {
     await client.connect();
@@ -33,11 +35,107 @@ app.get("/", (req, res) => {
     res.send("Eisenhower Todo App is Running!");
 });
 
-// Test MongoDB route
+// View tasks as JSON
 app.get("/tasks", async (req, res) => {
     const tasks = await tasksCollection.find({}).toArray();
 
     res.json(tasks);
+});
+
+// Mark task as complete
+app.post("/tasks/complete/:id", async (req, res) => {
+    const id = req.params.id;
+
+    await tasksCollection.updateOne(
+        { _id: new ObjectId(id) },
+        {
+            $set: {
+                completed: true
+            }
+        }
+    );
+
+    res.redirect("/view-tasks");
+});
+
+// Delete a task
+app.post("/tasks/delete/:id", async (req, res) => {
+    const id = req.params.id;
+
+    await tasksCollection.deleteOne({
+        _id: new ObjectId(id)
+    });
+
+    res.redirect("/view-tasks");
+});
+
+// Open edit page
+app.get("/tasks/edit/:id", async (req, res) => {
+    const id = req.params.id;
+
+    const task = await tasksCollection.findOne({
+        _id: new ObjectId(id)
+    });
+
+    res.render("edit", {
+        task: task
+    });
+});
+
+// Update task
+app.post("/tasks/edit/:id", async (req, res) => {
+    const id = req.params.id;
+
+    const {
+        title,
+        priority,
+        importance
+    } = req.body;
+
+    await tasksCollection.updateOne(
+        { _id: new ObjectId(id) },
+        {
+            $set: {
+                title: title,
+                priority: priority,
+                importance: importance
+            }
+        }
+    );
+
+    res.redirect("/view-tasks");
+});
+
+// Display all tasks using EJS
+app.get("/view-tasks", async (req, res) => {
+    const tasks = await tasksCollection.find({}).toArray();
+
+    res.render("tasks", {
+        tasks: tasks
+    });
+});
+
+// Add a new task
+app.post("/tasks", async (req, res) => {
+    const {
+        title,
+        priority,
+        importance
+    } = req.body;
+
+    const newTask = {
+        title: title,
+        priority: priority,
+        importance: importance,
+        completed: false
+    };
+
+    await tasksCollection.insertOne(newTask);
+
+    res.json({
+        message: "Task added successfully",
+        task: newTask
+    });
 });
 
 // Start server
@@ -48,5 +146,16 @@ async function startServer() {
         console.log("Server running at http://localhost:3000");
     });
 }
+
+// Eisenhower Matrix
+app.get("/matrix", async (req, res) => {
+
+    const tasks = await tasksCollection.find({}).toArray();
+
+    res.render("matrix", {
+        tasks: tasks
+    });
+
+});
 
 startServer();
