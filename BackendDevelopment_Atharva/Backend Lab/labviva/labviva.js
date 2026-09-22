@@ -32,7 +32,7 @@ async function connectDB() {
 
 // Home route
 app.get("/", (req, res) => {
-    res.send("Eisenhower Todo App is Running!");
+    res.redirect("/matrix");
 });
 
 // View tasks as JSON
@@ -44,6 +44,7 @@ app.get("/tasks", async (req, res) => {
 
 // Mark task as complete
 app.post("/tasks/complete/:id", async (req, res) => {
+
     const id = req.params.id;
 
     await tasksCollection.updateOne(
@@ -55,22 +56,26 @@ app.post("/tasks/complete/:id", async (req, res) => {
         }
     );
 
-    res.redirect("/view-tasks");
+    res.redirect("/matrix");
+
 });
 
 // Delete a task
 app.post("/tasks/delete/:id", async (req, res) => {
+
     const id = req.params.id;
 
     await tasksCollection.deleteOne({
         _id: new ObjectId(id)
     });
 
-    res.redirect("/view-tasks");
+    res.redirect("/matrix");
+
 });
 
 // Open edit page
 app.get("/tasks/edit/:id", async (req, res) => {
+
     const id = req.params.id;
 
     const task = await tasksCollection.findOne({
@@ -80,10 +85,12 @@ app.get("/tasks/edit/:id", async (req, res) => {
     res.render("edit", {
         task: task
     });
+
 });
 
 // Update task
 app.post("/tasks/edit/:id", async (req, res) => {
+
     const id = req.params.id;
 
     const {
@@ -103,20 +110,24 @@ app.post("/tasks/edit/:id", async (req, res) => {
         }
     );
 
-    res.redirect("/view-tasks");
+    res.redirect("/matrix");
+
 });
 
 // Display all tasks using EJS
 app.get("/view-tasks", async (req, res) => {
+
     const tasks = await tasksCollection.find({}).toArray();
 
     res.render("tasks", {
         tasks: tasks
     });
+
 });
 
 // Add a new task
 app.post("/tasks", async (req, res) => {
+
     const {
         title,
         priority,
@@ -132,20 +143,10 @@ app.post("/tasks", async (req, res) => {
 
     await tasksCollection.insertOne(newTask);
 
-    res.json({
-        message: "Task added successfully",
-        task: newTask
-    });
+    // Redirect to Matrix
+    res.redirect("/matrix");
+
 });
-
-// Start server
-async function startServer() {
-    await connectDB();
-
-    app.listen(3000, () => {
-        console.log("Server running at http://localhost:3000");
-    });
-}
 
 // Eisenhower Matrix
 app.get("/matrix", async (req, res) => {
@@ -157,5 +158,18 @@ app.get("/matrix", async (req, res) => {
     });
 
 });
+
+// Start server
+async function startServer() {
+
+    await connectDB();
+
+    app.listen(3000, () => {
+
+        console.log("Server running at http://localhost:3000");
+
+    });
+
+}
 
 startServer();

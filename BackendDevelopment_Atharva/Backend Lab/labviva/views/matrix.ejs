@@ -2,82 +2,262 @@
 <html>
 
 <head>
+
     <title>Eisenhower Matrix</title>
+
+    <link rel="stylesheet" href="/style.css">
+
 </head>
 
 <body>
 
     <h1>Eisenhower Matrix</h1>
 
-    <h2>🔴 Do First</h2>
+    <!-- Navigation -->
 
-    <% tasks.forEach(task => { %>
+    <div class="navigation">
 
-        <% if (task.priority === "urgent" &&
-               task.importance === "important") { %>
+        <a href="/view-tasks">View All Tasks</a>
 
-            <p>
-                <%= task.title %>
-                - Completed: <%= task.completed %>
-            </p>
+    </div>
 
-        <% } %>
 
-    <% }) %>
+    <!-- Add Task Form -->
 
-    <hr>
+    <h2>Add New Task</h2>
 
-    <h2>🟠 Schedule</h2>
+    <form action="/tasks" method="POST">
 
-    <% tasks.forEach(task => { %>
+        <label>Task Title:</label>
 
-        <% if (task.priority === "normal" &&
-               task.importance === "important") { %>
+        <input type="text" name="title" required>
 
-            <p>
-                <%= task.title %>
-                - Completed: <%= task.completed %>
-            </p>
+        <br><br>
 
-        <% } %>
+        <label>Urgency:</label>
 
-    <% }) %>
+        <select name="priority" required>
 
-    <hr>
+            <option value="urgent">Urgent</option>
 
-    <h2>🔵 Delegate</h2>
+            <option value="normal">Not Urgent</option>
 
-    <% tasks.forEach(task => { %>
+        </select>
 
-        <% if (task.priority === "urgent" &&
-               task.importance === "not-important") { %>
+        <br><br>
 
-            <p>
-                <%= task.title %>
-                - Completed: <%= task.completed %>
-            </p>
+        <label>Importance:</label>
 
-        <% } %>
+        <select name="importance" required>
 
-    <% }) %>
+            <option value="important">Important</option>
 
-    <hr>
+            <option value="not-important">Not Important</option>
 
-    <h2>⚪ Eliminate</h2>
+        </select>
 
-    <% tasks.forEach(task => { %>
+        <br><br>
 
-        <% if (task.priority === "normal" &&
-               task.importance === "not-important") { %>
+        <button type="submit">Add Task</button>
 
-            <p>
-                <%= task.title %>
-                - Completed: <%= task.completed %>
-            </p>
+    </form>
 
-        <% } %>
+    <br>
 
-    <% }) %>
+
+    <!-- Eisenhower Matrix -->
+
+    <div class="matrix">
+
+
+        <!-- Do First -->
+
+        <div class="box do-first">
+
+            <h2>🔴 Do First</h2>
+
+            <% tasks.forEach(task => { %>
+
+                <% if (task.priority === "urgent" &&
+                       task.importance === "important") { %>
+
+                    <div class="task">
+
+                        <strong><%= task.title %></strong>
+
+                        <p>
+                            Completed: <%= task.completed %>
+                        </p>
+
+                        <% if (!task.completed) { %>
+
+                            <form
+                                action="/tasks/complete/<%= task._id %>"
+                                method="POST">
+
+                                <button type="submit">
+                                    Mark as Completed ✅
+                                </button>
+
+                            </form>
+
+                        <% } else { %>
+
+                            <p>Task Completed ✅</p>
+
+                        <% } %>
+
+                    </div>
+
+                <% } %>
+
+            <% }) %>
+
+        </div>
+
+
+
+        <!-- Schedule -->
+
+        <div class="box schedule">
+
+            <h2>🟠 Schedule</h2>
+
+            <% tasks.forEach(task => { %>
+
+                <% if (task.priority === "normal" &&
+                       task.importance === "important") { %>
+
+                    <div class="task">
+
+                        <strong><%= task.title %></strong>
+
+                        <p>
+                            Completed: <%= task.completed %>
+                        </p>
+
+                        <% if (!task.completed) { %>
+
+                            <form
+                                action="/tasks/complete/<%= task._id %>"
+                                method="POST">
+
+                                <button type="submit">
+                                    Mark as Completed ✅
+                                </button>
+
+                            </form>
+
+                        <% } else { %>
+
+                            <p>Task Completed ✅</p>
+
+                        <% } %>
+
+                    </div>
+
+                <% } %>
+
+            <% }) %>
+
+        </div>
+
+
+
+        <!-- Delegate -->
+
+        <div class="box delegate">
+
+            <h2>🔵 Delegate</h2>
+
+            <% tasks.forEach(task => { %>
+
+                <% if (task.priority === "urgent" &&
+                       task.importance === "not-important") { %>
+
+                    <div class="task">
+
+                        <strong><%= task.title %></strong>
+
+                        <p>
+                            Completed: <%= task.completed %>
+                        </p>
+
+                        <% if (!task.completed) { %>
+
+                            <form
+                                action="/tasks/complete/<%= task._id %>"
+                                method="POST">
+
+                                <button type="submit">
+                                    Mark as Completed ✅
+                                </button>
+
+                            </form>
+
+                        <% } else { %>
+
+                            <p>Task Completed ✅</p>
+
+                        <% } %>
+
+                    </div>
+
+                <% } %>
+
+            <% }) %>
+
+        </div>
+
+
+
+        <!-- Eliminate -->
+
+        <div class="box eliminate">
+
+            <h2>⚪ Eliminate</h2>
+
+            <% tasks.forEach(task => { %>
+
+                <% if (task.priority === "normal" &&
+                       task.importance === "not-important") { %>
+
+                    <div class="task">
+
+                        <strong><%= task.title %></strong>
+
+                        <p>
+                            Completed: <%= task.completed %>
+                        </p>
+
+                        <% if (!task.completed) { %>
+
+                            <form
+                                action="/tasks/complete/<%= task._id %>"
+                                method="POST">
+
+                                <button type="submit">
+                                    Mark as Completed ✅
+                                </button>
+
+                            </form>
+
+                        <% } else { %>
+
+                            <p>Task Completed ✅</p>
+
+                        <% } %>
+
+                    </div>
+
+                <% } %>
+
+            <% }) %>
+
+        </div>
+
+
+    </div>
 
 </body>
 
