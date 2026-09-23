@@ -69,7 +69,8 @@ app.post("/tasks/delete/:id", async (req, res) => {
         _id: new ObjectId(id)
     });
 
-    res.redirect("/matrix");
+    // Remain on View All Tasks page
+    res.redirect("/view-tasks");
 
 });
 
