@@ -1,0 +1,22 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student List</title>
+</head>
+<body>
+    <h1>Student Management System</h1>
+
+    <h2>All Students</h2>
+
+    <ul>
+        <% students.forEach(student => { %>
+            <li>
+                ID: <%= student.id %> |
+                Name: <%= student.name %> |
+                Branch: <%= student.branch %>
+            </li>
+        <% }); %>
+    </ul>
+</body>
+</html>

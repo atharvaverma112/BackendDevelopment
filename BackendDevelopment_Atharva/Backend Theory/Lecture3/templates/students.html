@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Management System</title>
+</head>
+<body>
+    <h1>Student Management System</h1>
+
+    <h2>All Students</h2>
+
+    <ul>
+        {% for student in students %}
+            <li>
+                ID: {{ student.id }} |
+                Name: {{ student.name }} |
+                Branch: {{ student.branch }}
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
