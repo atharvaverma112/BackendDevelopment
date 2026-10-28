@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <h1>Welcome, <%= name %>!</h1>
+    <p>Course: <%= course %></p>
+
+    <h2>Student List</h2>
+
+    <% if (students.length === 0) { %>
+        <p>No students found.</p>
+    <% } else { %>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Course</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% students.forEach(student => { %>
+                    <tr>
+                        <td><%= student.id %></td>
+                        <td><%= student.name %></td>
+                        <td><%= student.course %></td>
+                        <td>
+                            <a href="/students/<%= student.id %>">
+                                View Details
+                            </a>
+                        </td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    <% } %>
+</body>
+</html>

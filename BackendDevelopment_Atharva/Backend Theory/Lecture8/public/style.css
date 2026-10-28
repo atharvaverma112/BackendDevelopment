@@ -1,0 +1,33 @@
+
+table {
+    width: 100%;
+    max-width: 900px;
+    border-collapse: collapse;
+    background-color: white;
+    margin-top: 20px;
+}
+
+th,
+td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #2563eb;
+    color: white;
+}
+
+/* Alternating row colors */
+tbody tr:nth-child(odd) {
+    background-color: #f2f6fc;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
+tbody tr:hover {
+    background-color: #dbeafe;
+}

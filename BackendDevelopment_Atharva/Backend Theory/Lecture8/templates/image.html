@@ -1,0 +1,20 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backend Development</title>
+</head>
+<body>
+    <h1>FastAPI Image Example</h1>
+
+    <p>Image served using FastAPI and Jinja2:</p>
+
+    <img
+        src="{{ url_for('static', path='/images/logo.png') }}"
+        alt="Backend Development Logo"
+        width="600"
+    >
+</body>
+</html>
