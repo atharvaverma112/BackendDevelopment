@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student API Client</title>
+</head>
+<body>
+    <h1>Student Management</h1>
+    <h2>CSE Students</h2>
+
+    <ul id="student-list"></ul>
+    <p id="message"></p>
+
+    <script>
+        async function loadStudents() {
+            const list = document.getElementById("student-list");
+            const message = document.getElementById("message");
+
+            try {
+                const response = await fetch(
+                    "http://localhost:3000/students"
+                );
+
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+
+                const students = await response.json();
+
+                const cseStudents = students.filter(
+                    student => student.branch === "CSE"
+                );
+
+                list.replaceChildren();
+
+                cseStudents.forEach(student => {
+                    const li = document.createElement("li");
+                    li.textContent =
+                        `ID: ${student.id} | ${student.name} | ${student.branch}`;
+                    list.appendChild(li);
+                });
+
+                if (cseStudents.length === 0) {
+                    message.textContent = "No CSE students found.";
+                }
+            } catch (error) {
+                message.textContent =
+                    "Unable to load students. Check whether the Express server is running.";
+                console.error(error);
+            }
+        }
+
+        loadStudents();
+    </script>
+</body>
+</html>
